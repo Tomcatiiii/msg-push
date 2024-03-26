@@ -14,7 +14,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @Slf4j
 public class MsgPushApplication implements CommandLineRunner {
 
-    @Value("server.port")
+    @Value("${server.port}")
     private String serverPort;
 
     public static void main(String[] args) {
@@ -23,7 +23,7 @@ public class MsgPushApplication implements CommandLineRunner {
 
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         log.info(AnsiOutput.toString(SystemConstant.PROJECT_BANNER, "\n", AnsiColor.GREEN, SystemConstant.PROJECT_NAME, AnsiColor.DEFAULT, AnsiStyle.FAINT));
         log.info("msg-push start succeeded, Index >> http://127.0.0.1:{}/", serverPort);
         log.info("msg-push start succeeded, Swagger Url >> http://127.0.0.1:{}/swagger-ui/index.html", serverPort);
