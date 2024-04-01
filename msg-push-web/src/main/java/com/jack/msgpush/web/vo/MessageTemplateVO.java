@@ -8,7 +8,7 @@ import java.util.List;
 
 @Data
 @Builder
-public class MessageTemplateVo {
+public class MessageTemplateVO {
     private List<MessageTemplate> rows;
 
     private Long count;
