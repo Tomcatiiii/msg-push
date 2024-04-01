@@ -1,9 +1,11 @@
 package com.jack.msgpush.web.controller;
 
 import com.jack.msgpush.support.domin.MessageTemplate;
+import com.jack.msgpush.web.annotation.BasicResult;
+import com.jack.msgpush.web.annotation.Monitor;
 import com.jack.msgpush.web.service.MessageTemplateService;
 import com.jack.msgpush.web.vo.MessageTemplateParam;
-import com.jack.msgpush.web.vo.MessageTemplateVo;
+import com.jack.msgpush.web.vo.MessageTemplateVO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.*;
  */
 @Slf4j
 @RestController
+@BasicResult
+@Monitor
 @RequestMapping("/messageTemplate")
 @Tag(name = "消息模板")
 public class MessageTemplateController {
@@ -38,8 +42,8 @@ public class MessageTemplateController {
 
     @GetMapping("/query/list")
     @Operation(summary = "列表查询")
-    public MessageTemplateVo queryList(@Validated MessageTemplateParam messageTemplateParam) {
+    public MessageTemplateVO queryList(@Validated MessageTemplateParam messageTemplateParam) {
         Page<MessageTemplate> messageTemplates = messageTemplateService.queryList(messageTemplateParam);
-        return MessageTemplateVo.builder().rows(messageTemplates.toList()).count(messageTemplates.getTotalElements()).build();
+        return MessageTemplateVO.builder().rows(messageTemplates.toList()).count(messageTemplates.getTotalElements()).build();
     }
 }
